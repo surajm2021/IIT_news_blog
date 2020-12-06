@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>News</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="{% static 'blog/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
+
+                {% if request.user.is_authenticated %}
+				<li><a href="#" accesskey="3" title="">news</a></li>
+                {% else%}
+                <li><a href="#" accesskey="2" title="">Login</a></li>
+                {% endif %}
+				<li><a href="#" accesskey="4" title="">About</a></li>
+				<li><a href="#" accesskey="5" title="">Contact Us</a></li>
+			</ul>
+		</div>
+		<div id="logo">
+			<h1><a href="#">News Blog</a></h1>
+			<span>Design by : Suraj Shinare</a></span> </div>
+	</div>
+</div>
+<div id="wrapper1">
+	<div id="welcome" class="container">
+		<div class="title">
+			<h2>Welcome to News Blog</h2>
+			<span class="byline"> Get breaking news headlines</span> </div>
+		<div class="content">
+			<p>
+                News API has been the integral element allowing us to offer relevant and timely political news to
+                our users – allowing them to take immediate action to contact their representatives using generated c
+                all scripts based on the articles they read
+            </p> </div>
+	</div>
+</div>
+
+<div id="wrapper2">
+	<div id="featured" class="container">
+		<div class="box1">
+            <h2>- Tom Petty</h2>
+            <p>
+                I think television's become a downright dangerous thing. It
+                has no moral barometer whatsoever. If you want to talk about something that is all about money, just watch the television.
+            </p></div>
+		<div class="box2">
+		            <h2>- Nicole Kidman</h2>
+            <p>
+                 I love acting but I don't like all of the other stuff associated with it. The interest
+                in celebrities, the press, the Internet, when your identity becomes mixed up in the way people are preceving you.
+</p></div>
+        </div>
+	</div>
+</div>
+</body>
+</html>
