@@ -15,17 +15,33 @@
 	<div id="header" class="container">
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
+				<li class="current_page_item"><a href="{% url 'home' %}" accesskey="1" title="">Homepage</a></li>
 
                 {% if request.user.is_authenticated %}
-				<li><a href="#" accesskey="3" title="">news</a></li>
+				<li><a href="{% url 'all_news' %}" accesskey="3" title="">news</a></li>
                 {% else%}
-                <li><a href="#" accesskey="2" title="">Login</a></li>
+                <li><a href="{% url 'login' %}" accesskey="2" title="">Login</a></li>
                 {% endif %}
 				<li><a href="#" accesskey="4" title="">About</a></li>
 				<li><a href="#" accesskey="5" title="">Contact Us</a></li>
+                {% if request.user.is_authenticated %}
+				<li><a href="{% url 'logout' %}" accesskey="3" title="">logout</a></li>
+
+                {% endif %}
 			</ul>
 		</div>
+        <div class="my_form">
+	       {% if messages  %}
+			    {% for message in messages %}
+			            <div class="alert alert-{{message.tags}}">
+			          	{{message}}
+	             		</div>
+		     	{% endfor %}
+			{% endif %}
+     </div>
+        <div class="block_div">
+     	    {% block content %}
+
 		<div id="logo">
 			<h1><a href="#">News Blog</a></h1>
 			<span>Design by : Suraj Shinare</a></span> </div>
@@ -61,6 +77,9 @@
 </p></div>
         </div>
 	</div>
+          	{% endblock content %}
+     </div>
 </div>
+
 </body>
 </html>
