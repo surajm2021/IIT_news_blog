@@ -8,17 +8,23 @@
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
 <link href="{% static 'blog/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="{% url 'home' %}" accesskey="1" title="">Homepage</a></li>
+				<li><a href="{% url 'home' %}" accesskey="1" title="">Homepage</a></li>
 
                 {% if request.user.is_authenticated %}
 				<li><a href="{% url 'all_news' %}" accesskey="3" title="">news</a></li>
+				<li><a href="{% url 'show-all-blog' %}" accesskey="3" title="">Blog</a></li>
+				<li><a href="{% url 'new-blog' %}" accesskey="3" title="">Create Blog</a></li>
                 {% else%}
                 <li><a href="{% url 'login' %}" accesskey="2" title="">Login</a></li>
                 {% endif %}
@@ -57,11 +63,18 @@
                 News API has been the integral element allowing us to offer relevant and timely political news to
                 our users – allowing them to take immediate action to contact their representatives using generated c
                 all scripts based on the articles they read
+            <p>
+            Read The Hindu ePaper wherever you are, whenever you want.
+
+The Hindu ePaper, a digital replica of the daily newspaper, is designed to provide a familiar reading format to the digital 'on-the-go' consumer. The user-friendly navigation will let you view the pages of each edition as you would with the printed copy of the newspaper and lets you search instantly, save stories and share them with friends on social media. Easy to access across multiple devices and choice of formats in the form of text, image or PDF, it creates a reading experience that is pleasant and convenient. The ePaper also offers free access to 60 days of archived newspapers from the date of purchase
+
+Available everyday at 5 AM (IST) in 11 editions – Bengaluru, Chennai, Coimbatore, Madurai, Hyderabad, Vizag, Vijayawada, Kochi, Delhi, Thiruvananthapuram and Mumbai editions.
+        </p>
             </p> </div>
 	</div>
 </div>
 
-<div id="wrapper2">
+
 	<div id="featured" class="container">
 		<div class="box1">
             <h2>- Tom Petty</h2>
@@ -78,8 +91,7 @@
         </div>
 	</div>
           	{% endblock content %}
-     </div>
-</div>
 
+</div>
 </body>
 </html>

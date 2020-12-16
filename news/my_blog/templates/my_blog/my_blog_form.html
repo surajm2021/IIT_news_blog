@@ -1,0 +1,44 @@
+
+{% extends "blog/Home.html" %}
+{% load static %}
+{% block content %}
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+      @media screen and (max-width: 800px){
+            .create_activity{
+                
+                    text-align: center;
+                    background-color: black;      
+                    font-size: 10px;
+                    color: white;
+            }
+            }
+
+            .home_page{
+              display: none;
+            }
+            .create_activity{
+                    width: 100%;
+                    background-color: #BFC805;      
+                    text-align: center;
+                    color: black;
+                    font-weight: bold;         
+            }
+    </style>
+  </head>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}  
+ <br>
+<div class="create_activity">    
+<h1>Add New Activity</h1>
+
+     Title :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{form.title}}<br><br>
+    <center> Desciption:{{form.description}}<br><br></center>
+     Date : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{form.date}}<br><br>
+     Time : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{form.time}}<br><br>
+
+     <button type="submit" class="btn" >SUBMIT</button>
+</form><br><br>
+</div>
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "blog/Home.html" %}
+
+{% block title %}My Blog{% endblock %}
+{% block content %}
+<center>
+<div class='row d-flex justify-content-center'>
+
+    <div class="col-12 mt-3 d-flex justify-content-center">
+        <div class="card" style="width: 39rem;">
+            <div class="card-header">
+
+                <h1><b>{{ post.title }}</b></h1>
+
+
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <p class='date'>
+                        Published {{ post.date }} on {{ post.time }}  by {{ post.created_by }}
+                    </p>
+                    {{ post.description }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+               {% if object.created_by == user %}
+                               <a class="btn btn-secondary btn-sm mt-1" href="{% url 'blog-update' object.id %}"><h3>update</h3></a>
+                               <a class="btn btn-secondary btn-sm mt-1" href="{% url 'blog-delete' object.id %}"><h3>delete</h3></a>
+
+                {% endif %}
+
+
+
+</div>
+</center>
+{% endblock %}

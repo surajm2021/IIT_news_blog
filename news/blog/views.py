@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from django.core.paginator import Paginator
 # Create your views here.
 from newsapi import NewsApiClient
 
@@ -46,21 +46,12 @@ def register_user(request):
 
 def all_news(request):
     newsapi = NewsApiClient(api_key='80a893cc368d4e39a2ed0123757b9131')
-    top = newsapi.get_top_headlines(sources='the-hindu')
-
-    l = top['articles']
-    desc = []
-    news = []
-    img = []
-
-    for i in range(len(l)):
-        f = l[i]
-        news.append(f['title'])
-        desc.append(f['description'])
-        img.append(f['urlToImage'])
-    mylist = zip(news, desc, img)
-
-    return render(request, 'blog/all_news.html', context={"mylist": mylist})
+    all = newsapi.get_everything(sources='the-hindu')
+    l = all['articles']
+    p = Paginator(l, 5)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    return render(request, 'blog/all_news.html', context={"mylist": page_obj})
 
 
 def logout_user(request):

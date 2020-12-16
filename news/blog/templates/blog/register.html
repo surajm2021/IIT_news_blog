@@ -7,18 +7,27 @@
 <title>Registration form</title>
 
 <link rel="stylesheet" type="text/css" href="{% static 'blog/login.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
 <div id="container">
+ <div class="imgcontainer">
+<img src="{% static 'blog/logo.png' %}" width="150px" class="rounded-circle">
+</div><br>
 <form method="post">
     {% load crispy_forms_tags %}
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit">register up</button>
-    <a href="{% url 'login' %}"> Already Account</a>
+    <button class="btn btn-success" type="submit">register up</button>
+    <a class="btn btn-success" href="{% url 'login' %}"> Already Account</a>
+
+    <br><br><br><br>
 
 
   </form>

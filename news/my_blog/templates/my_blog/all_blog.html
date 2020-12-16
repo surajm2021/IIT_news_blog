@@ -1,0 +1,54 @@
+{% extends "blog/Home.html" %}
+
+{% block title %}My Blog{% endblock %}
+{% block content %}
+<center>
+<div class='row d-flex justify-content-center'>
+    <h1><b> My Blog</b></h1>
+
+    {% for post in My_Blog %}
+    <div class="col-12 mt-3 d-flex justify-content-center">
+        <div class="card" style="width: 60rem;">
+            <div class="card-header">
+                <a href="{{ post.get_absolute_url }}">
+                    <h2 class="page-header">{{ post.title }}</h2>
+                </a>
+
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <p class='date'>
+                       <i> Published {{ post.date }} on {{ post.time }}  by {{ post.created_by }}</i>
+                    </p>
+                    {{ post.description|truncatewords:30|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+<div align="center">
+   {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+{% endif %}
+</div>
+
+</div>
+</center>
+{% endblock %}
